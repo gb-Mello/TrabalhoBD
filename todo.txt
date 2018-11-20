@@ -1,0 +1,32 @@
+O banco deverá atender minimamente a 3ª forma Normal;
+Todas as tabelas deverão possuir dados;
+
+Os dados deverão ser validados na inclusão e alteração;
+
+As tabelas deverão possuir índices
+
+O trabalho deverá ter ao menos 10 consultas distintas, e deverão utilizar-se de pelo menos 1 função em cada uma.
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+Para cada tabela do banco de dados elabore as queries para:
+
+
+Inserir todos os valores
+
+Inserir apenas os valores obrigatórios (campos Not Null);
+
+Listar todos os registros;
+Listar todos os campos obrigatórios;
+
+Atualizar todas as colunas (exceto as chaves) de um determinado registro;
+
+Excluir um determinado registro da tabela.
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+Implemente no seu Projeto no mínimo 2 consultas diferentes utilizando cada um dos tipos de Join (total de pelo menos 8 consultas diferentes)
+
+O banco deverá ter ao menos duas procedures e duas triggers, a serem definidas pelos alunos.
