@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS TESTE;
 
-CREATE DATABASE IF NOT EXISTS TESTE; 
+CREATE DATABASE IF NOT EXISTS TESTE;
 
 USE TESTE;
 
@@ -26,10 +26,9 @@ CREATE TABLE IF NOT EXISTS `conta` (
   `DataCriacao` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idConta`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 11
+AUTO_INCREMENT = 10
 DEFAULT CHARACTER SET = latin1;
 
--- insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Joao','Joao123','0000','joao@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
 
 CREATE TABLE IF NOT EXISTS `perfil_cliente` (
   `idPerfil_Cliente` INT(11) NOT NULL AUTO_INCREMENT,
@@ -312,26 +311,59 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- Conta
 
-insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Joao','Joao123','0000','joao@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
+insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Joao','Joao123','0000','joao@domain.com',0,'sim','1346567-8','m','01/01/0001',current_date());
 
-insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Pedro','Pedro123','0000','pedro@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
+insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Pedro','Pedro123','0000','pedro@domain.com',0,'sim','4567123-8','m','01/01/0001',current_date());
 
-insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('marcos','marcos123','0000','marcos@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
+insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Marcos','marcos123','0000','marcos@domain.com',0,'sim','2345671-8','m','01/01/0001',current_date());
+
+insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Jorge','jorge123','0000','jorge@domain.com',0,'sim','3456723-8','m','01/01/0001',current_date());
+
+insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Pedrock','pedroca123','0000','pedroca@domain.com',0,'sim','3456733-8','m','01/01/0001',current_date());
+
+insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Lucas','lucas123','0000','lucas@domain.com',0,'sim','3456734-8','m','01/01/0001',current_date());
+
+insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Matheus','mat123','0000','mat@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
+
+insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Marino','marin123','0000','marinho@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
+
+insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Gustavo Marinho','gust123','0000','gust@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
 
 insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Jorge','jorge123','0000','jorge@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
 
-insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('pedroca','pedroca123','0000','pedroca@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
+insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Tiago','tiago123','0000','jorge@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
 
-insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('lucas','lucas123','0000','lucas@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
+insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Ton','ton123','0000','ton@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
 
-insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('mat','mat123','0000','mat@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
+insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('Carlos','carlos123','0000','carlos@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
 
-insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('luqinhas','luqinhas123','0000','luquinhas@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
+-- Endereço
 
-insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('matheus','matheus123','0000','matheus@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
+insert into endereco VALUES ('São Paulo', 'São Paulo', 'Brasil', 'Rua das Palmeiras', 'Cidade líder', 88, 10);
 
-insert into Conta(Nome,Usuario,Senha,Email,Nivel,Ativo,Cpf,Genero,Nascimento,DataCriacao) VALUES ('pedrao','pedrao123','0000','pedrao@domain.com',0,'sim','1234567-8','m','01/01/0001',current_date());
+insert into endereco VALUES ('Santos', 'São Paulo', 'Brasil', 'Rua dos trabalhadores', 'cidade do trabalho', 18, 11);
 
+insert into endereco VALUES ('Diadema', 'São Paulo', 'Brasil', 'Avenida sonho batista', 'cidade dos cidadãos', 12, 12);
+
+insert into endereco VALUES ('Jundiaí', 'São Paulo', 'Brasil', 'Rua da judiação', 'Cidade Jundiaí', 66, 13);
+
+insert into endereco VALUES ('Santos', 'São Paulo', 'Brasil', 'Rua de todos os santos', 'Cidade dos Santos', 17, 14);
+
+insert into endereco VALUES ('ABC', 'São Paulo', 'Brasil', 'Rua do abc', 'Cidade ABC', 96, 15);
+
+insert into endereco VALUES ('São Paulo', 'São Paulo', 'Brasil', 'Av paulista', 'Centro', 99, 16);
+
+insert into endereco VALUES ('São Paulo', 'São Paulo', 'Brasil', 'Av das araucárias', 'Araucárias', 100, 17);
+
+insert into endereco VALUES ('São Paulo', 'São Paulo', 'Brasil', 'Rua dos Sonhos', 'Jardim célia', 118, 18);
+
+insert into endereco VALUES ('São Paulo', 'São Paulo', 'Brasil', 'Av Líder', 'Cidade líder', 68, 19);
+
+insert into endereco VALUES ('São Paulo', 'São Paulo', 'Brasil', 'Rua Orlando', 'Jardim das Orlas', 98, 20);
+
+insert into endereco VALUES ('São Paulo', 'São Paulo', 'Brasil', 'Rua das igrejas', 'Cidade Crente', 78, 21);
+
+insert into endereco VALUES ('São Paulo', 'São Paulo', 'Brasil', 'Avenida teodoro sampaio', 'Centro', 102, 22);
 
 -- Departamento 
 
@@ -372,11 +404,11 @@ insert into Função(Nome_Função,Setor_idSetor) values ('Tec. Informatica',3);
 
 -- perfil_Funcionario
 
-insert into Perfil_Funcionario (Setor_idSetor,Conta_idConta,Função_idFunção) VALUES (1,12,1); -- arrumar fk da conta
+insert into Perfil_Funcionario (Setor_idSetor,Conta_idConta,Função_idFunção) VALUES (1,20,1); -- arrumar fk da conta
 
-insert into Perfil_Funcionario (Setor_idSetor,Conta_idConta,Função_idFunção) VALUES (2,13,4); -- arrumar fk da conta
+insert into Perfil_Funcionario (Setor_idSetor,Conta_idConta,Função_idFunção) VALUES (2,21,4); -- arrumar fk da conta
 
-insert into Perfil_Funcionario (Setor_idSetor,Conta_idConta,Função_idFunção) VALUES (3,14,5); -- arrumar fk da conta
+insert into Perfil_Funcionario (Setor_idSetor,Conta_idConta,Função_idFunção) VALUES (3,22,5); -- arrumar fk da conta
 
 
 
@@ -384,25 +416,25 @@ insert into Perfil_Funcionario (Setor_idSetor,Conta_idConta,Função_idFunção)
 
 -- perfil_cliente
 
-insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 11, '376576767', '08280660', 'rua do joao');
+insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 10, '376576767', '08280660', 'rua do joao');
 
-insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 12, '12312312', '08280667', 'rua do pedro');
+insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 11, '12312312', '08280667', 'rua do pedro');
 
-insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 13, '12212312', '08280667', 'rua do marcos');
+insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 12, '12212312', '08280667', 'rua do marcos');
 
-insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 14, '12112312', '08280667', 'rua do jorge');
+insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 13, '12112312', '08280667', 'rua do jorge');
 
-insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 15, '123412312', '08280667', 'rua do pedroca');
+insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 14, '123412312', '08280667', 'rua do pedroca');
 
-insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 16, '12342312', '08280667', 'rua do lucas');
+insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 15, '12342312', '08280667', 'rua do lucas');
 
-insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 17, '122342312', '08280667', 'rua do mat');
+insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 16, '122342312', '08280667', 'rua do mat');
 
-insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 18, '2312312', '08280667', 'rua do luquinhas');
+insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 17, '2312312', '08280667', 'rua do luquinhas');
 
-insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 19, '2312312', '08280667', 'rua do matheus');
+insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 18, '2312312', '08280667', 'rua do matheus');
 
-insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 20, '12312312', '08280667', 'rua do pedrao');
+insert into Perfil_Cliente (Numero_Cartão,Conta_idConta, Telefone, CEP, Endereco) values ('423412312', 19, '12312312', '08280667', 'rua do pedrao');
 
  
 
@@ -516,15 +548,39 @@ select sum(c.quantidade * p.preço) as 'total vendido pela empresa' from compra_
 WHERE p.idproduto = c.produto_idproduto;
 
  
+-- TODOS OS SELECTS 
+select * from conta;
 
--- select * from compra_has_produto;
+select * from endereco;
 
--- select * from compra;
+select * from perfil_cliente;
 
--- select * from produto;
+select * from perfil_funcionario;
 
--- select * from perfil_vendedor;
+select * from função;
 
--- select * from conta;
+select * from setor;
+
+select * from departamento;
+
+select * from perfil_vendedor;
+
+select * from produto;
+
+select * from categoria_produto;
+
+select * from compra_has_produto;
+
+select * from compra;
+
+select * from status_compra;
+
+select * from entrega;
+
+select * from conta_pagar;
+
+-- INDICES
+
+
 
 
