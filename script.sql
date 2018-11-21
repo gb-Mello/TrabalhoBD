@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS TESTE;
+DROP DATABASE IF EXISTS SiteCompras;
 
-CREATE DATABASE IF NOT EXISTS TESTE;
+CREATE DATABASE IF NOT EXISTS SiteCompras;
 
-USE TESTE;
+USE SiteCompras;
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -10,7 +10,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 
 
 -- -----------------------------------------------------
--- Table `teste`.`conta`
+-- Table `SiteCompras`.`conta`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `conta` (
   `idConta` INT(11) NOT NULL AUTO_INCREMENT,
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `endereco` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-USE `teste` ;
+USE `SiteCompras` ;
 
 
 CREATE TABLE IF NOT EXISTS `categoria_produto` (
@@ -105,7 +105,7 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `teste`.`perfil_vendedor`
+-- Table `SiteCompras`.`perfil_vendedor`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `perfil_vendedor` (
   `idPerfil_Vendedor` INT(11) NOT NULL AUTO_INCREMENT,
@@ -123,7 +123,7 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `teste`.`produto`
+-- Table `SiteCompras`.`produto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `produto` (
   `idProduto` INT(11) NOT NULL AUTO_INCREMENT,
@@ -150,7 +150,7 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `teste`.`compra_has_produto`
+-- Table `SiteCompras`.`compra_has_produto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `compra_has_produto` (
   `Quantidade` INT(11) NOT NULL,
@@ -175,7 +175,7 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `teste`.`conta_pagar`
+-- Table `SiteCompras`.`conta_pagar`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `conta_pagar` (
   `idConta_pagar` INT(11) NOT NULL AUTO_INCREMENT,
@@ -196,7 +196,7 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `teste`.`setor`
+-- Table `SiteCompras`.`setor`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `setor` (
   `idSetor` INT(11) NOT NULL AUTO_INCREMENT,
@@ -221,7 +221,7 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `teste`.`função`
+-- Table `SiteCompras`.`função`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `função` (
   `idFunção` INT(11) NOT NULL AUTO_INCREMENT,
@@ -239,7 +239,7 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `teste`.`perfil_funcionario`
+-- Table `SiteCompras`.`perfil_funcionario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `perfil_funcionario` (
   `idPerfil_Funcionario` INT(11) NOT NULL AUTO_INCREMENT,
@@ -251,12 +251,12 @@ CREATE TABLE IF NOT EXISTS `perfil_funcionario` (
   INDEX `fk_Perfil_Funcionario_Função1_idx` (`Função_idFunção` ASC),
   CONSTRAINT `fk_Perfil_Funcionario_Conta1`
     FOREIGN KEY (`Conta_idConta`)
-    REFERENCES `teste`.`conta` (`idConta`)
+    REFERENCES `SiteCompras`.`conta` (`idConta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Perfil_Funcionario_Função1`
     FOREIGN KEY (`Função_idFunção`)
-    REFERENCES `teste`.`função` (`idFunção`)
+    REFERENCES `SiteCompras`.`função` (`idFunção`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -264,7 +264,7 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `teste`.`departamento`
+-- Table `SiteCompras`.`departamento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `departamento` (
   `idDepartamento` INT(11) NOT NULL AUTO_INCREMENT,
@@ -282,7 +282,7 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `teste`.`entrega`
+-- Table `SiteCompras`.`entrega`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `entrega` (
   `idEntrega` INT(11) NOT NULL AUTO_INCREMENT,
@@ -317,7 +317,7 @@ delimiter $$
 
 CREATE PROCEDURE `Pro_Definir_Gestor` (in id_gestor int(10),in id_departamento int(10))
 BEGIN
-	update `Teste`.`Departamento` set Gestor_id=id_gestor where idDepartamento = id_departamento ;
+	update `SiteCompras`.`Departamento` set Gestor_id=id_gestor where idDepartamento = id_departamento ;
 END $$
 delimiter ;
 
@@ -329,7 +329,7 @@ delimiter $$
 
 CREATE PROCEDURE `Pro_Definir_Coordenador` (in id_Coordenador int(10),in id_setor int(10))
 BEGIN
-	update `Teste`.`setor` set Coordenador_id=id_Coordenador where idsetor = id_setor ;
+	update `SiteCompras`.`setor` set Coordenador_id=id_Coordenador where idsetor = id_setor ;
 END $$
 delimiter ;
 
@@ -340,15 +340,15 @@ delimiter ;
 -- TRIGGERS
 -- -----------------------------------------------------
 
-use teste;
+use SiteCompras;
 drop trigger if exists AFTER_COMPRA_INSERT;
 
 DELIMITER $$
 CREATE TRIGGER AFTER_COMPRA_INSERT
-AFTER INSERT ON `TESTE`.`compra`
+AFTER INSERT ON `SiteCompras`.`compra`
 FOR EACH ROW
 BEGIN
-	insert into `TESTE`.`status_compra` values ("em andamento",new.idcompra);
+	insert into `SiteCompras`.`status_compra` values ("em andamento",new.idcompra);
     
 END$$
 DELIMITER ;
