@@ -51,6 +51,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `compra` (
   `idCompra` INT(11) NOT NULL AUTO_INCREMENT,
   `Perfil_Cliente_idPerfil_Cliente` INT(11) NOT NULL,
+  `Valor_total` int(11),
   `Data_compra` DATETIME NOT NULL,
   PRIMARY KEY (`idCompra`),
   INDEX `fk_Compra_Perfil_Cliente1_idx` (`Perfil_Cliente_idPerfil_Cliente` ASC),
@@ -305,6 +306,76 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+-- -----------------------------------------------------
+-- Procedures
+-- -----------------------------------------------------
+
+
+-- Define um gestor para um determinado departamento com o id do funcionario e o id do departamento
+Drop PROCEDURE if exists `Pro_Definir_Gestor`;
+delimiter $$
+
+CREATE PROCEDURE `Pro_Definir_Gestor` (in id_gestor int(10),in id_departamento int(10))
+BEGIN
+	update `Teste`.`Departamento` set Gestor_id=id_gestor where idDepartamento = id_departamento ;
+END $$
+delimiter ;
+
+
+
+-- Define um coordenador para um determinado setor com o id do funcionario e o id do setor
+Drop PROCEDURE if exists `Pro_Definir_Coordenador`;
+delimiter $$
+
+CREATE PROCEDURE `Pro_Definir_Coordenador` (in id_Coordenador int(10),in id_setor int(10))
+BEGIN
+	update `Teste`.`setor` set Coordenador_id=id_Coordenador where idsetor = id_setor ;
+END $$
+delimiter ;
+
+-- -----------------------------------------------------
+-- Procedures
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- TRIGGERS
+-- -----------------------------------------------------
+
+use teste;
+drop trigger if exists AFTER_COMPRA_INSERT;
+
+DELIMITER $$
+CREATE TRIGGER AFTER_COMPRA_INSERT
+AFTER INSERT ON `TESTE`.`compra`
+FOR EACH ROW
+BEGIN
+	insert into `TESTE`.`status_compra` values ("em andamento",new.idcompra);
+    
+END$$
+DELIMITER ;
+
+
+drop trigger if exists BEFORE_COMPRA_HAS_PRODUTO_INSERT;
+
+DELIMITER $$
+CREATE TRIGGER BEFORE_COMPRA_HAS_PRODUTO_INSERT
+before INSERT ON `COMPRA_HAS_PRODUTO`
+FOR EACH ROW
+BEGIN
+
+-- atualiza o campo valor_total na tabela de compra_has_produto para ter o valor do produto * quantidade de um dos produtos da compra
+set new.`Valor_total` = new.`quantidade` * (select preço from produto where idproduto = new.`Produto_idProduto`);
+-- atualiza o campo estoque para subtrair que foram comprados
+update `produto` set `produto`.`Estoque` = `produto`.`Estoque` - new.`Quantidade` where `idProduto` = new.`Produto_idProduto`;    
+-- calcula o valor total e atualiza o campo do valor total na tabela de compra
+update `compra`set `compra`.`Valor_total` = `compra`.`Valor_total` + new.`Valor_total` where `idCompra` = new.`Compra_idCompra` ;
+END$$
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- TRIGGERS
+-- -----------------------------------------------------
+
+
 -- inserts 
 
  
@@ -469,24 +540,24 @@ insert into Categoria_Produto(Nome_categoria,Categoria_Descrição) values('Outr
 -- Produto
  select * from Produto;
  
-insert into Produto (Perfil_Vendedor_idPerfil_Vendedor,Categoria_Produto_idProduto,Preço,Descrição,Estoque) values (1,1,15.00,'descrição x',20);
+insert into Produto (Perfil_Vendedor_idPerfil_Vendedor,Categoria_Produto_idProduto,Preço,Descrição,Estoque) values (1,1,15.00,'descrição x',200);
 
-insert into Produto (Perfil_Vendedor_idPerfil_Vendedor,Categoria_Produto_idProduto,Preço,Descrição,Estoque) values (1,2,300.00,'descrição y',2);
+insert into Produto (Perfil_Vendedor_idPerfil_Vendedor,Categoria_Produto_idProduto,Preço,Descrição,Estoque) values (1,2,300.00,'descrição y',20);
 
-insert into Produto (Perfil_Vendedor_idPerfil_Vendedor,Categoria_Produto_idProduto,Preço,Descrição,Estoque) values (2,3,25000.00,'descrição z',1);
+insert into Produto (Perfil_Vendedor_idPerfil_Vendedor,Categoria_Produto_idProduto,Preço,Descrição,Estoque) values (2,3,25000.00,'descrição z',10);
 
-insert into Produto (Perfil_Vendedor_idPerfil_Vendedor,Categoria_Produto_idProduto,Preço,Descrição,Estoque) values (3,4,1500.00,'descrição a',150);
+insert into Produto (Perfil_Vendedor_idPerfil_Vendedor,Categoria_Produto_idProduto,Preço,Descrição,Estoque) values (3,4,1500.00,'descrição a',1500);
 
-insert into Produto (Perfil_Vendedor_idPerfil_Vendedor,Categoria_Produto_idProduto,Preço,Descrição,Estoque) values (3,5,10.00,'descrição b',3);
+insert into Produto (Perfil_Vendedor_idPerfil_Vendedor,Categoria_Produto_idProduto,Preço,Descrição,Estoque) values (3,5,10.00,'descrição b',30);
 
  -- Compra 
 
 
  
 
- insert into Compra(Perfil_Cliente_idPerfil_Cliente,Data_compra) values (2,current_date());
+ insert into Compra(Perfil_Cliente_idPerfil_Cliente,Data_compra,Valor_total) values (2,current_date(),0);
 
- insert into Compra(Perfil_Cliente_idPerfil_Cliente,Data_compra) values (3,current_date());
+ insert into Compra(Perfil_Cliente_idPerfil_Cliente,Data_compra,Valor_total) values (3,current_date(),0);
  
  -- Compra_has_produto
 
@@ -496,7 +567,6 @@ insert into Compra_has_Produto(Quantidade,valor_total,Produto_idProduto,Cliente_
 
 insert into Compra_has_Produto(Quantidade,valor_total,Produto_idProduto,Cliente_idPerfil_Cliente,Compra_idCompra) values(1,250,5,2,2);
 
- 
 
 insert into Compra_has_Produto(Quantidade,valor_total,Produto_idProduto,Cliente_idPerfil_Cliente,Compra_idCompra) values(1,250,2,3,1);
 
