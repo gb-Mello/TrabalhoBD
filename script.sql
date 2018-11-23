@@ -521,7 +521,7 @@ insert into Perfil_Vendedor(CNPJ,Conta_idConta) values('12414151-5',16);
 
 insert into Perfil_Vendedor(CNPJ,Conta_idConta) values('12414151-5',17);
 
- 
+ select * from perfil_vendedor;
  
  -- Categoria Produto
 
@@ -579,11 +579,10 @@ insert into Conta_pagar(formaPagamento,parcelas,cartao,recebimento_aprovado,Comp
 
 -- Entrega 
 
- 
-
 insert into Entrega(dataEntrega,frete,`local`,sucessoEntrega,Compra_idCompra) values (curdate(),100,'RUA X',0,1) ;
 
  
+ -- 10 SELECTS
  
  -- Listando quantidade de compras(compras e não quantidade comprada) por produto
 
@@ -593,23 +592,27 @@ WHERE c.produto_idProduto = p.idproduto   group by c.produto_idproduto, p.descri
 
  
 
--- produto mais vendido de cada vendedor
+-- produto mais vendido de cada vendedor (decrescente)
 
-select co.nome, MAX(c.produto_idproduto) as 'ID DO PRODUTO', p.descrição as 'NOME PRODUTO', COUNT(c.produto_idproduto) as 'COMPRAS' from produto p, compra_has_produto c, conta co, perfil_vendedor pe
+select co.nome, c.produto_idproduto as 'ID DO PRODUTO', p.descrição as 'NOME PRODUTO', COUNT(c.produto_idproduto) as 'COMPRAS' from produto p, compra_has_produto c, conta co, perfil_vendedor pe
 
-WHERE c.produto_idproduto = p.idproduto AND co.idconta = pe.conta_idconta AND p.perfil_vendedor_idperfil_vendedor = pe.conta_idconta 
+WHERE c.produto_idproduto = p.idproduto AND co.idconta = pe.conta_idconta AND p.perfil_vendedor_idperfil_vendedor = pe.idPerfil_vendedor
 
 group by c.produto_idproduto, p.descrição, co.nome;
 
- 
+-- ordem crescente
+
+select co.nome, c.produto_idproduto as 'ID DO PRODUTO', p.descrição as 'NOME PRODUTO', COUNT(c.produto_idproduto) as 'COMPRAS' from produto p, compra_has_produto c, conta co, perfil_vendedor pe
+
+WHERE c.produto_idproduto = p.idproduto AND co.idconta = pe.conta_idconta AND p.perfil_vendedor_idperfil_vendedor = pe.idPerfil_vendedor
+
+group by c.produto_idproduto, p.descrição, co.nome ORDER BY COUNT(c.produto_idproduto);
 
 -- mostrar subtotal de cada item de uma compra
 
 select c.compra_idcompra as 'ID DA COMPRA', c.quantidade * p.preço as 'subtotal de cada item da compra' from compra_has_produto c INNER JOIN produto p INNER JOIN compra co 
 
 WHERE p.idproduto = c.produto_idproduto AND c.compra_idcompra = co.idcompra;
-
- 
 
 -- total vendido pela empresa
 
@@ -649,7 +652,36 @@ select * from entrega;
 
 select * from conta_pagar;
 
--- INDICES
+-- DELETANDO REGISTROS
+delete from conta_pagar where idconta_pagar = 1;
+
+delete from entrega where identrega = 1;
+
+delete from status_compra where compra_idcompra = 1;
+
+delete from produto where idproduto = 1;
+
+delete from categoria_produto where idcategoria_produto = 1;
+
+delete from perfil_vendedor where idperfil_vendedor = 4;
+
+delete from compra_has_produto where compra_idcompra = 1;
+
+delete from compra where idcompra = 1;
+
+delete from endereco where conta_idConta = 10;
+
+delete from perfil_cliente where idperfil_cliente = 10;
+
+delete from perfil_funcionario where idperfil_funcionario = 1;
+
+delete from função where idfunção = 1;
+
+delete from setor where idsetor = 4;
+
+delete from departamento where iddepartamento = 4;
+
+delete from conta where idconta = 1;
 
 
 
