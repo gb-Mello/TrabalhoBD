@@ -652,6 +652,47 @@ select * from entrega;
 
 select * from conta_pagar;
 
+-- ATUALIZANDO REGISTROS
+update conta SET `Nome` = 'novo nome', `Usuario` = 'novo user', `Senha` = 'nova senha', `Email`='novo@email.com', `Nivel` = 1, `Ativo` = 'sim',
+`Cpf` = '44922173806',
+`Genero` = 'M', 
+`Nascimento` = '01/02/1998', `DataCriacao` = now() WHERE idconta = 10;
+
+
+update endereco SET cidade = 'cidade nova', estado = 'estado novo', pais = 'país novo', logradouro = 'rua nova', bairro='novo',
+numero = '96', conta_idConta= 12 where conta_idconta=10;
+
+show columns from produto;
+
+update perfil_cliente SET Numero_Cartão = '1212121', Conta_idConta = 10, Telefone = '2743365', CEP = '08280667', Endereco = 'Rua jackson 98'
+where idPerfil_cliente = 10;
+
+update perfil_funcionario SET Setor_idSetor = 1, Conta_idConta = 1, Função_idFunção = 1 where idperfil_funcionario = 5;
+
+update função SET Nome_Função = 'nova func', Setor_idSetor = 1 where idFunção = 1;
+
+update setor SET Nome_Setor = 'Novo setor', Coordenador_id = 10, Departamento_idDepartamento = 1 where idsetor = 5;
+
+update departamento SET Nome_Departamento = 'Novo depart', Gestor_id = 1 where iddepartamento = 5;
+
+update perfil_vendedor SET CNPJ = '121212/11-1', Conta_idConta = 1 where idPerfil_Vendedor = 4;
+
+update produto SET Perfil_Vendedor_idPerfil_Vendedor = 1,  Categoria_Produto_idProduto = 1, preço = 1, descrição = 'Atualizando', 
+Descrição = 'teste', Estoque= 1 where idproduto = 1;
+
+-- update categoria_produto = set ;
+
+-- update compra_has_produto;
+
+-- update compra;
+
+-- update status_compra;
+
+-- update entrega;
+
+-- update conta_pagar;
+
+
 -- DELETANDO REGISTROS
 delete from conta_pagar where idconta_pagar = 1;
 
@@ -682,6 +723,28 @@ delete from setor where idsetor = 4;
 delete from departamento where iddepartamento = 4;
 
 delete from conta where idconta = 1;
+
+ -- SELECT COM JOINS, inner
+select f.nome_função, s.nome_setor from função f inner join setor s where f.setor_idsetor = s.idsetor;
+select s.nome_setor, d.nome_departamento from setor s inner join departamento d where s.departamento_iddepartamento = d.iddepartamento;
+-- left
+select * from função f left join setor s on f.setor_idsetor = s.idsetor;
+select * from setor s left join departamento d on s.departamento_iddepartamento = d.iddepartamento;
+-- right
+select * from função f right join setor s on f.setor_idsetor = s.idsetor;
+select * from setor s right join departamento d on s.departamento_iddepartamento = d.iddepartamento;
+-- full outer join
+select * from função f left join setor s on f.setor_idsetor = s.idsetor 
+UNION 
+select * from função f right join setor s on f.setor_idsetor = s.idsetor;
+
+select * from setor s left join departamento d on s.departamento_iddepartamento = d.iddepartamento 
+UNION
+select * from setor s right join departamento d on s.departamento_iddepartamento = d.iddepartamento;
+
+
+
+
 
 
 
